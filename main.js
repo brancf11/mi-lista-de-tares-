@@ -1,35 +1,31 @@
-// Referencias a elementos del DOM
-const input = document.getElementById("tareaInput");
-const boton = document.getElementById("agregarBtn");
-const lista = document.getElementById("listaTareas");
+// Selección de elementos
+const inputTarea = document.getElementById('tareaInput');
+const botonAgregar = document.getElementById('agregarBtn');
+const listaTareas = document.getElementById('listaTareas');
 
-// Evento para agregar tarea
-boton.addEventListener("click", () => {
-  const texto = input.value.trim();
+// Función para crear una tarea
+function agregarTarea() {
+  const valor = inputTarea.value.trim();
+  if (valor === "") return;
 
-  if (texto !== "") {
-    // Crear elementos
-    const li = document.createElement("li");
-    li.textContent = texto;
+  const li = document.createElement('li');
+  li.textContent = valor;
 
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "Eliminar";
-    btnEliminar.classList.add("eliminar");
+  const botonEliminar = document.createElement('button');
+  botonEliminar.textContent = 'X';
+  botonEliminar.className = 'eliminar';
+  botonEliminar.addEventListener('click', () => li.remove());
 
-    // Evento para eliminar tarea
-    btnEliminar.addEventListener("click", () => {
-      lista.removeChild(li);
-    });
+  li.appendChild(botonEliminar);
+  listaTareas.appendChild(li);
 
-    // Agregar botón al <li>
-    li.appendChild(btnEliminar);
+  inputTarea.value = '';
+}
 
-    // Agregar tarea a la lista
-    lista.appendChild(li);
+// Evento del botón
+botonAgregar.addEventListener('click', agregarTarea);
 
-    // Limpiar input
-    input.value = "";
-  } else {
-    alert("Por favor escribe una tarea");
-  }
+// Permitir agregar tarea presionando Enter
+inputTarea.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') agregarTarea();
 });
