@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* Apila header, main y footer */
+  flex-direction: column; 
   text-align: center;
 }
 
@@ -20,7 +20,7 @@ header {
 }
 
 .contenido {
-  flex: 1; /* Ocupa todo el espacio disponible */
+  flex: 1; 
 }
 
 .input-section {
